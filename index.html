@@ -95,13 +95,21 @@ button {
 
 <script>
 let timeLeft = 180; // ⏱ REQUIRED viewing time (seconds)
+
 const timerText = document.getElementById("timerText");
 const startBtn = document.getElementById("startBtn");
+
+// Initial text
+timerText.innerText = `${timeLeft} seconds before the quiz unlocks`;
 
 const timer = setInterval(() => {
   timeLeft--;
 
-  startBtn.innerText = `Start Quiz (${timeLeft})`;
+  // Update button text
+  startBtn.innerText = `Start Quiz (${timeLeft}s)`;
+
+  // ✅ Update message text
+  timerText.innerText = `${timeLeft} seconds before the quiz unlocks`;
 
   if (timeLeft <= 0) {
     clearInterval(timer);
@@ -110,6 +118,7 @@ const timer = setInterval(() => {
     startBtn.classList.add("enabled");
     startBtn.innerText = "Start Quiz";
 
+    // Final message
     timerText.innerText = "You may now proceed to the quiz.";
   }
 }, 1000);
