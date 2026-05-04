@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMOS HSE Safety Induction</title>
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1000px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: #2c5364;
+}
+
+.progress {
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.slide-wrapper {
+  width: 100%;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 20px;
+}
+
+.slide-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+button {
+  padding: 12px 24px;
+  margin: 5px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-back {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-next {
+  background: #2c5364;
+  color: white;
+}
+
+.btn-start {
+  background: #28a745;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 DMOS HSE Safety Induction Slides</h1>
+<p class="progress" id="progressText">Slide 1 of 3</p>
+
+<div class="slide-wrapper">
+  <iframe id="slideFrame"
+    src="YOUR_SLIDE_LINK_1"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div id="controls">
+  <button class="btn-back" onclick="prevSlide()">Back</button>
+  <button class="btn-next" onclick="nextSlide()">Next</button>
+</div>
+
+</div>
+
+<script>
+let currentSlide = 0;
+
+const slides = [
+  "https://dmostechnologies1-my.sharepoint.com/personal/embran_dmostechnologies_com/_layouts/15/Doc.aspx?sourcedoc={b4348ed5-2a5a-4214-99e1-d298ed841dc8}&action=embedview&wdAr=1.7777777777777777"
+];
+
+function updateSlide() {
+  const frame = document.getElementById("slideFrame");
+  const progress = document.getElementById("progressText");
+  const controls = document.getElementById("controls");
+
+  frame.src = slides[currentSlide];
+  progress.innerText = `Slide ${currentSlide + 1} of ${slides.length}`;
+
+  if (currentSlide === slides.length - 1) {
+    controls.innerHTML = `
+      <button class="btn-back" onclick="prevSlide()">Back</button>
+      <button class="btn-start" onclick="startQuiz()">Start Quiz</button>
+    `;
+  } else {
+    controls.innerHTML = `
+      <button class="btn-back" onclick="prevSlide()">Back</button>
+      <button class="btn-next" onclick="nextSlide()">Next</button>
+    `;
+  }
+}
+
+function nextSlide() {
+  if (currentSlide < slides.length - 1) {
+    currentSlide++;
+    updateSlide();
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 0) {
+    currentSlide--;
+    updateSlide();
+  }
+}
+
+function startQuiz() {
+  const quizzes = [
+    "https://forms.office.com/r/XRkmibFvHQ",
+    "https://forms.office.com/r/Dpnbz24J9s",
+    "https://forms.office.com/r/u6RECy8yxg"
+  ];
+
+  const randomIndex = Math.floor(Math.random() * quizzes.length);
+  window.location.href = quizzes[randomIndex];
+}
+</script>
+
+</body>
+</html>
